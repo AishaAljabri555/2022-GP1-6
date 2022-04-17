@@ -74,7 +74,7 @@ class UserController extends GetxController {
         await FirebaseFirestore.instance.collection('Users').add({
       'username': userNameController.text,
       'email': emailController.text,
-      'phone': phoneController.text,
+      // 'phone': '',
       'password': passwordController.text,
     });
 
@@ -86,6 +86,18 @@ class UserController extends GetxController {
       'index': '1',
       'User_ID': ref.id
     });
+
+    final userProfile = Get.put(ProfileController());
+    userProfile.userProfileForm
+        .control('phoneNumber')
+        .updateValue(phoneController.text);
+    try {
+      DocumentReference reference = await FirebaseFirestore.instance
+          .collection('userProfile')
+          .add(userProfile.userProfileForm.value);
+      reference.update({'userID': ref.id});
+    } catch (_) {}
+
     userNameController.clear();
     emailController.clear();
     phoneController.clear();

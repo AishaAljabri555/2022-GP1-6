@@ -18,7 +18,7 @@ class ProfileController extends GetxController {
     'deafMute': FormControl<bool>(),
   });
 
-  void saveUserProfile() async {
+  Future<void> saveUserProfile() async {
     bool updated = false;
     try {
       await FirebaseFirestore.instance

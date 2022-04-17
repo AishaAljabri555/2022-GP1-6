@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:untitled_design/styles/styles.dart';
 import 'package:untitled_design/widgets/widgets.dart';
@@ -8,14 +8,14 @@ import '../../../../controllers/UserController.dart';
 import '../../../app.dart';
 
 class Contacts extends StatefulWidget {
-  Contacts({Key? key}) : super(key: key);
+  const Contacts({Key? key}) : super(key: key);
 
   @override
   State<Contacts> createState() => _ContactsState();
 }
 
 class _ContactsState extends State<Contacts> {
-  UserController b = new UserController();
+  UserController b = Get.put(UserController());
 
   final FormGroup contactForm = FormGroup({
     'name1': FormControl(),
@@ -85,7 +85,7 @@ class _ContactsState extends State<Contacts> {
                     children: [
                       CustomCardTile(
                         icon: 'person',
-                        title: bringInfo('Contact_1').toString() != "Empty"
+                        title: bringInfo('Contact_1') != "Empty"
                             ? bringInfo('Contact_1').toString()
                             : "contact#1 is not set",
                         iconData: bringInfo('Contact_1').toString() == "Empty"
