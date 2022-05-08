@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:untitled_design/app/modules/user/screens/nearest.dart';
 import 'package:untitled_design/utils/utils.dart';
 import 'package:untitled_design/widgets/shadowed_card.dart';
-
+import 'package:url_launcher/url_launcher.dart';
+import 'package:untitled_design/widgets/widgets.dart';
 import '../../../../styles/styles.dart';
 
 class Categories extends StatelessWidget {
@@ -49,19 +50,63 @@ class Categories extends StatelessWidget {
                     buildRow(
                       'Ambulance',
                       'ambulance',
-                      () {},
+                      () async {
+                        print("go call");
+                        try {
+                          String url = "tel:+997";
+                          if (await canLaunch(url))
+                            await launch(url);
+                          else
+                            print("could not launch call app");
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
                       'Civil defence',
                       'civildefence',
-                      () {},
+                      () async {
+                        print("go call");
+                        try {
+                          String url = "tel:+998";
+                          if (await canLaunch(url))
+                            await launch(url);
+                          else
+                            print("could not launch call app");
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
                     ),
                     const SizedBox(height: Sizes.s40),
                     buildRow(
                       'Police',
                       'police',
-                      () {},
+                      () async {
+                        print("go call");
+                        try {
+                          String url = "tel:+999";
+                          if (await canLaunch(url))
+                            await launch(url);
+                          else
+                            print("could not launch call app");
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
                       'Other',
                       'otheremergency',
-                      () {},
+                      () async {
+                        print("go call");
+                        try {
+                          String url = "tel:+112";
+                          if (await canLaunch(url))
+                            await launch(url);
+                          else
+                            print("could not launch call app");
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
                     ),
                   ],
                 ),
